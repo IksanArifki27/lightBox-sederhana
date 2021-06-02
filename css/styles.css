@@ -1,0 +1,145 @@
+/* font */
+@font-face {
+    font-family:'BebasNeue';
+    src: url(../font/BebasNeue-Regular.woff) format('woff');
+}
+
+/* styles utama */
+body{
+    font: 18px/36px 'BebasNeue','arial';
+    background-color: #ddd;
+}
+
+h1{
+    font-size: 80px;
+    margin: 50px 0px;
+    text-align: center;
+    text-shadow: 5px 5px 2px white;
+}
+.gallery li{
+    list-style: none;
+}
+
+.container{
+    width: 600px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .4);
+    border-radius: 5px;
+
+}
+
+.gallery li {
+    width: 120px;
+    height: 120px;
+    /* overflow: hidden; */
+    border: 5px solid grey;
+    float: left;
+    margin-right:40px;
+    position: relative;
+}
+.gallery img,
+.gallery li span,
+.gallery li{
+    border-radius: 50%;
+}
+.gallery li span{
+    display: block;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(200, 200, 200,.5);
+    position:absolute;
+    top: 0px;
+    text-align: center;
+    line-height: 120px;
+    color : salmon;
+    text-shadow: 1px 1px 1px lightblue;
+    opacity: 0;
+    transition: .5s;
+    color: white;
+}
+
+.gallery li a:hover span{
+    opacity: 1;
+}
+
+/* overlay */
+.overlay {
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999;
+    transition: .5s;
+    text-align: center;
+    padding: 100px;
+}
+
+.overlay:target{
+    width: auto;
+    height: auto;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+}
+
+.overlay img {
+    max-height: 100%;
+    border-radius: 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .8)
+}
+
+/* clear */
+.clear{
+    clear: both;
+}
+
+/* animation */
+
+.overlay:target img{
+    animation: zoomDanFade 1s;
+}
+
+@keyframes zoomDanFade {
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity : 1;
+    }
+}
+
+@keyframes slideDown{
+    0%{
+        opacity: 0;
+        margin-top: -30px;
+    }
+    100%{
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+.overlay .close{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -20px;
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: black;
+    padding: 2 px;
+    opacity: 0;
+}
+
+.overlay:target .close{
+    animation: slideDown 1s forwards;
+}
